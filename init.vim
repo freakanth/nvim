@@ -14,7 +14,7 @@
 "
 " Python Development:
 "   - Python 3.12+
-"   - pyenv or Poetry for virtual environments
+"   - pyenv or uv for virtual environments
 "   - LSP servers: :MasonInstall pyright ruff (REQUIRED for gd, gr, K, etc.)
 "   - Linters/Formatters: pip install black mypy ruff (in project venv)
 "   - Debugger: pip install debugpy (in project venv)
@@ -25,8 +25,8 @@
 "   - Run: gh auth login (for Octo.nvim PR/issue management)
 "
 " AI Assistance:
-"   - Avante: npm install -g @agentclientprotocol/claude-agent-acp
-"             Requires Claude Pro subscription (uses ACP, not API credits)
+"   - Claude Code CLI: npm install -g @anthropic-ai/claude-code
+"   - Auth: claude auth login (one-time, requires Claude Pro subscription)
 "
 " SETUP COMMANDS:
 " ---------------
