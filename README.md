@@ -67,4 +67,4 @@ lua/
 
 ## License
 
-GPLv3
+MIT
