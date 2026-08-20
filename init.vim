@@ -250,6 +250,14 @@ nnoremap ]b :lua require('dap').list_breakpoints(); vim.cmd('cnext')<CR>
 
 " Claude Code
 nnoremap <leader>ac :ClaudeCode<CR>
+nnoremap <leader>af :ClaudeCodeFocus<CR>
+nnoremap <leader>ab :ClaudeCodeAdd %<CR>
+nnoremap <leader>as :ClaudeCodeTreeAdd<CR>
+xnoremap <leader>as :ClaudeCodeSend<CR>
+nnoremap <leader>am :ClaudeCodeSelectModel<CR>
+" Diff review (in the proposed-change diff buffer)
+nnoremap <leader>aa :ClaudeCodeDiffAccept<CR>
+nnoremap <leader>ad :ClaudeCodeDiffDeny<CR>
 
 " Window Navigation
 nnoremap <C-J> <C-W><C-J>

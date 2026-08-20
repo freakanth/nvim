@@ -403,6 +403,48 @@ gh auth login
 
 ---
 
+## 🤖 Claude Code (claudecode.nvim)
+
+**What it is:** Runs the official `claude` CLI in a Neovim terminal split and connects it
+to the editor as an "IDE" (same protocol as the VS Code/JetBrains extensions). Proposed edits
+open as **native Neovim diffs** in the real file, which you accept/reject. Uses your Claude
+subscription — it drives the first-party CLI, so it is *not* affected by the third-party
+ACP/Agent-SDK subscription restrictions.
+
+**Prerequisites:** `npm install -g @anthropic-ai/claude-code` then `claude auth login` (one-time).
+
+### Commands (use these to get started)
+
+```vim
+:ClaudeCode           " Toggle the Claude terminal split
+:ClaudeCodeFocus      " Jump cursor into the Claude split
+:ClaudeCodeStart      " Start the CLI / WebSocket server (auto on first toggle)
+:ClaudeCodeStop       " Stop the server
+:ClaudeCodeStatus     " Show connection status
+:ClaudeCodeSelectModel " Pick the model for the session
+:ClaudeCodeAdd %      " Add the current file to Claude's context
+:ClaudeCodeCloseAllDiffs " Dismiss all open proposal diffs
+```
+
+### Keybindings
+
+| Keybinding | Mode | Action | Description |
+|------------|------|--------|-------------|
+| `<Space>ac` | Normal | Toggle | Show/hide the Claude terminal split |
+| `<Space>af` | Normal | Focus | Move cursor into the Claude split |
+| `<Space>ab` | Normal | Add buffer | Send current file as context (`:ClaudeCodeAdd %`) |
+| `<Space>as` | Visual | Send selection | Send the visual selection to Claude as context |
+| `<Space>as` | Normal | Tree add | Add file(s) from a file-tree buffer (nvim-tree/neo-tree) |
+| `<Space>am` | Normal | Select model | Choose the model for the session |
+| `<Space>aa` | Normal | **Accept diff** | Apply the proposed change (in the diff buffer) |
+| `<Space>ad` | Normal | **Deny diff** | Reject the proposed change (in the diff buffer) |
+
+**Diff review flow:** When Claude proposes an edit, a diff opens in the target file. Review it,
+then `<Space>aa` to accept or `<Space>ad` to reject. `<Space>aa`/`<Space>ad` only do anything
+while a proposal diff is open.
+
+---
+
 ## 📂 Window/Split Management
 
 ### Navigation
