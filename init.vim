@@ -16,7 +16,7 @@
 "   - Python 3.12+
 "   - pyenv or uv for virtual environments
 "   - LSP servers: :MasonInstall pyright ruff (REQUIRED for gd, gr, K, etc.)
-"   - Linters/Formatters: pip install black mypy ruff (in project venv)
+"   - Linters/Formatters: uv add --dev mypy (in project venv; Ruff comes from Mason)
 "   - Debugger: pip install debugpy (in project venv)
 "   - IMPORTANT: LSP servers via Mason (global), packages via venv (per-project)
 "
@@ -176,12 +176,13 @@ lua require('treesitter-config')   -- Syntax highlighting (Python, Lua, Vim, Mar
 " ============================================================================
 
 " ALE - Linting & Formatting
-let g:ale_linters = {'python': ['mypy', 'ruff']}
+" Ruff formats via its language server (lua/lsp-config.lua) and reports its own
+" diagnostics there, so ALE only adds mypy and Ruff's lint autofixes.
+let g:ale_linters = {'python': ['mypy']}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'python': ['black', 'autoimport', 'reorder-python-imports', 'ruff']
+\   'python': ['autoimport', 'ruff']
 \}
-let g:ale_python_black_options = '-l 100'
 let g:ale_fix_on_save = 1
 
 " VimTeX
@@ -215,7 +216,7 @@ nnoremap <leader>fw <cmd>Telescope grep_string<cr>
 " ALE
 nmap <silent> <leader>aj :ALENext<cr>
 nmap <silent> <leader>ak :ALEPrevious<cr>
-map <leader>b :ALEFix black<CR>
+map <leader>b <cmd>lua vim.lsp.buf.format()<CR>
 map <leader>r :ALEFix ruff<CR>
 
 " Git (vim-fugitive)

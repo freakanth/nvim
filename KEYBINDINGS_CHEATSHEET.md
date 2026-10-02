@@ -112,9 +112,9 @@ brew install ripgrep fd
 
 | Keybinding | Action | Description |
 |------------|--------|-------------|
-| `<Space>b` | Format with Black | Run black formatter on current file |
-| `<Space>r` | Format with Ruff | Run ruff formatter on current file |
-| Auto-format | On Save | Black + Ruff run automatically on `:w` |
+| `<Space>b` | Format | Format the current file with Ruff (via LSP) |
+| `<Space>r` | Ruff fixes | Apply Ruff's lint autofixes to the current file |
+| Auto-format | On Save | Ruff formats and applies lint fixes on `:w` |
 
 ### Linting (ALE + LSP)
 
@@ -592,7 +592,7 @@ while a proposal diff is open.
 - **Debugging:** `:PyDebug` command auto-detects Poetry/uv and runs appropriately
 - **Type hints:** Pyright shows type errors as you type
 - **Imports:** Ruff suggests and organizes imports
-- **Format on save:** Code auto-formats with black + ruff on save
+- **Format on save:** Code auto-formats with Ruff on save
 
 ---
 
@@ -620,7 +620,7 @@ while a proposal diff is open.
 ### Formatting Issues
 
 1. Check ALE status: `:ALEInfo`
-2. Verify formatters installed: `which black ruff`
+2. Verify Ruff is installed: `:Mason` (ruff should show ✓)
 3. Check for errors: `:messages`
 
 ### Debugging Issues
