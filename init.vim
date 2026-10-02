@@ -183,6 +183,8 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'python': ['autoimport', 'ruff']
 \}
+" Sort imports (Ruff's isort rule) in every project, on top of its own rule selection
+let g:ale_python_ruff_options = '--extend-select I'
 let g:ale_fix_on_save = 1
 
 " VimTeX
