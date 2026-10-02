@@ -39,9 +39,11 @@ local function get_python_path()
   return 'python3'
 end
 
--- Setup Python debugger (uses debugpy)
--- Install with: pip install debugpy OR uv tool install debugpy
-dap_python.setup(get_python_path())
+-- Setup Python debugger (uses debugpy). With 'uv', dap-python starts the adapter via
+-- `uv run --with debugpy`, so projects don't need debugpy installed. Poetry projects
+-- still need it as a dev dependency: `uv run` would create a stray .venv there.
+local in_poetry_project = vim.fn.filereadable(vim.fn.getcwd() .. '/poetry.lock') == 1
+dap_python.setup(in_poetry_project and get_python_path() or 'uv')
 
 -- Python debugging configurations
 dap.configurations.python = {
@@ -202,7 +204,7 @@ local function get_python_runner()
   if vim.fn.filereadable(poetry_lock) == 1 then
     return 'poetry run python'
   end
-  return 'uv run python'
+  return 'uv run --with debugpy python'
 end
 
 -- Enhanced auto-attach debug function

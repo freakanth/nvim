@@ -25,7 +25,7 @@ A detailed writeup is available at [cherla.org](https://cherla.org/posts/my-neov
 **Python**
 - Python 3.12+
 - [pyenv](https://github.com/pyenv/pyenv), [Poetry](https://python-poetry.org/), or [uv](https://github.com/astral-sh/uv)
-- `pip install debugpy` in your project virtualenv (for debugging)
+- For debugging: nothing for uv projects (uv supplies debugpy on the fly); Poetry projects need `poetry add --group dev debugpy`
 
 **GitHub integration**
 - [GitHub CLI](https://cli.github.com/) — `brew install gh && gh auth login`

@@ -17,7 +17,7 @@
 "   - pyenv or uv for virtual environments
 "   - LSP servers: :MasonInstall pyright ruff (REQUIRED for gd, gr, K, etc.)
 "   - Linters/Formatters: uv add --dev mypy (in project venv; Ruff comes from Mason)
-"   - Debugger: pip install debugpy (in project venv)
+"   - Debugger: nothing for uv projects (uv run --with debugpy); poetry: poetry add --group dev debugpy
 "   - IMPORTANT: LSP servers via Mason (global), packages via venv (per-project)
 "
 " Git Integration:

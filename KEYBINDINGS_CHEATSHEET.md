@@ -129,15 +129,12 @@ brew install ripgrep fd
 
 ## 🐛 Python Debugging (nvim-dap)
 
-**Prerequisites:** `debugpy` must be installed in your project's virtual environment:
+**Prerequisites:** uv projects need nothing: `:PyDebug` runs `uv run --with debugpy`, so debugpy is supplied on the fly. Poetry projects need it as a dev dependency:
 ```bash
-# In your project directory:
-uv add --dev debugpy        # For uv projects
-poetry add --group dev debugpy  # For poetry projects
-pip install debugpy         # For other projects
+poetry add --group dev debugpy
 ```
 **Common issue:** If `:PyDebug` hangs at "Attaching debugger", check:
-1. Is debugpy installed in venv? Run: `python -c "import debugpy"`
+1. Can debugpy load? Run: `uv run --with debugpy python -c "import debugpy"` (Poetry: `poetry run python -c "import debugpy"`)
 2. Is port 5678 in use? Kill zombie process: `lsof -ti:5678 | xargs kill`
 
 ### Debug Controls
@@ -626,7 +623,7 @@ while a proposal diff is open.
 ### Debugging Issues
 
 1. **Breakpoints not hit:**
-   - Verify debugpy installed: `uv tool list` or `pip list | grep debugpy`
+   - Verify debugpy loads: `uv run --with debugpy python -c "import debugpy"`
    - Check you're setting breakpoints in code that actually runs
    - Verify file path matches (use absolute paths if needed)
    - Check debug logs: `:DapShowLog`
