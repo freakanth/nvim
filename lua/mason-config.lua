@@ -11,7 +11,6 @@ require('mason').setup({
 })
 
 require('mason-lspconfig').setup({
-  -- Ensure these servers are installed
-  ensure_installed = {},
-  automatic_installation = false,
+  -- Installed on startup if missing; mason-lspconfig v2 then auto-enables them
+  ensure_installed = { 'pyright', 'ruff', 'bashls', 'marksman' },
 })
