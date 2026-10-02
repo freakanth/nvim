@@ -134,6 +134,10 @@ vim.lsp.config.ruff = {
   filetypes = { 'python' },
   root_markers = { 'pyproject.toml', 'ruff.toml', '.ruff.toml', '.git' },
   capabilities = capabilities,
+  -- 100 columns only where the project doesn't set its own line length
+  init_options = {
+    settings = { lineLength = 100, configurationPreference = 'filesystemFirst' },
+  },
   on_attach = function(client, bufnr)
     -- Disable hover in favor of Pyright
     client.server_capabilities.hoverProvider = false
