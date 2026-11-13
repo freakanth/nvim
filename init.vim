@@ -16,7 +16,7 @@
 "   - Python 3.12+
 "   - pyenv or uv for virtual environments
 "   - LSP servers: :MasonInstall pyright ruff (REQUIRED for gd, gr, K, etc.)
-"   - Linters/Formatters: uv add --dev mypy (in project venv; Ruff comes from Mason)
+"   - Linters/Formatters: uv add --dev pyrefly (in project venv; Ruff comes from Mason)
 "   - Debugger: nothing for uv projects (uv run --with debugpy); poetry: poetry add --group dev debugpy
 "   - IMPORTANT: LSP servers via Mason (global), packages via venv (per-project)
 "
@@ -177,8 +177,12 @@ lua require('treesitter-config')   -- Syntax highlighting (Python, Lua, Vim, Mar
 
 " ALE - Linting & Formatting
 " Ruff formats via its language server (lua/lsp-config.lua) and reports its own
-" diagnostics there, so ALE only adds mypy and Ruff's lint autofixes.
-let g:ale_linters = {'python': ['mypy']}
+" diagnostics there, so ALE only adds Pyrefly and Ruff's lint autofixes.
+let g:ale_linters = {'python': ['pyrefly']}
+" ALE drives Pyrefly as a language server (`pyrefly lsp`), not a one-shot CLI.
+" auto_uv makes it `uv run pyrefly` inside a uv project so it resolves imports
+" against that project's venv rather than whatever is on PATH.
+let g:ale_python_pyrefly_auto_uv = 1
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'python': ['autoimport', 'ruff']
