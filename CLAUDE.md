@@ -29,7 +29,7 @@ IMPORTANT: `get_python_path()` in both `lsp-config.lua` and `dap-config.lua` aut
 
 - Uses **Neovim 0.11+ native API** (`vim.lsp.config.*` not lspconfig)
 - Servers: Pyright + Ruff (format on save enabled)
-- Ruff LSP formats on save; ALE adds mypy diagnostics and Ruff lint autofixes
+- Ruff LSP formats on save; ALE adds Pyrefly type diagnostics and Ruff lint autofixes
 
 ## TreeSitter Quirks
 
